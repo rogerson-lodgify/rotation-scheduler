@@ -27,8 +27,16 @@ internal class ActivityRepository
         return await _databaseContext.Set<Activity>().Include(u => u.Users).ToListAsync(cancellationToken);
     }
 
+    public async Task<IActivity[]> GetToAlertAsync(CancellationToken cancellationToken = default)
+    {
+        return await _databaseContext.Set<Activity>()
+            .Where(w => w.Duration.CurrentEnd() < DateTime.Now)
+            .ToArrayAsync(cancellationToken);
+    }
+
     public async Task<IActivity?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
     {
-        return await _databaseContext.Set<Activity>().Include(u => u.Users).Where(w => w.Id == id).FirstOrDefaultAsync(cancellationToken);
+        return await _databaseContext.Set<Activity>().Include(u => u.Users).Where(w => w.Id == id)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 }

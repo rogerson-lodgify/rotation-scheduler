@@ -2,6 +2,7 @@
 using Asp.Versioning;
 using FluentValidation;
 using Microsoft.OpenApi.Models;
+using Rotation.API.Activities.Features;
 using Rotation.Infra.Contracts;
 
 namespace Rotation.API;
@@ -37,6 +38,8 @@ public static class APIDIExtensions
         
         builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(currentAssembly));
         builder.Services.AddValidatorsFromAssembly(currentAssembly);
+        
+        builder.Services.AddHostedService<MonitorActivitiesJob>();
     }
 
     public static void UseAPI(this WebApplication app)

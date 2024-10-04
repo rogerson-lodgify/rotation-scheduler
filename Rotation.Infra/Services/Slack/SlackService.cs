@@ -16,7 +16,7 @@ public class SlackService
 
     public async Task SendMessageAsync(SlackMessage msg, CancellationToken cancellationToken)
     {
-        await _slack.Chat.PostMessage(new Message() 
+        await _slack.Chat.PostMessage(new Message 
         { 
             Text = msg.Text, 
             Channel = msg.Channel

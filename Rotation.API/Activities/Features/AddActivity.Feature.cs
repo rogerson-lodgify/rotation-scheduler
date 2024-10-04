@@ -21,11 +21,8 @@ public static class AddActivity
     class Validator
     : AbstractValidator<AddActivityCommand>
     {
-        private readonly IServiceProvider _serviceProvider;
-        public Validator(IServiceProvider serviceProvider)
+        public Validator()
         {
-            _serviceProvider = serviceProvider;
-
             RuleFor(_ => _.Name)
                 .NotEmpty()
                 .WithMessage("Name must have a value");

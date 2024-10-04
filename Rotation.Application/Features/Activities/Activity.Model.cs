@@ -79,8 +79,14 @@ public class Activity : IActivity
             unavailableUsers.Add(user);
         }
 
-        Resume = new ActivityResume(main?.Name ?? "None", main?.Email ?? string.Empty, replacer?.Name ?? "None", replacer?.Email, Duration.CurrentBegin,
-            Duration.CurrentEnd(), Name,
+        Resume = new ActivityResume(
+            main?.Name ?? "None",
+            main?.Email ?? string.Empty,
+            replacer?.Name ?? "None",
+            replacer?.Email,
+            Duration.CurrentBegin,
+            Duration.CurrentEnd(),
+            Name,
             unavailableUsers.ToArray());
 
         return Resume;
